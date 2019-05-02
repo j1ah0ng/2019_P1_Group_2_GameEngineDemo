@@ -1,1 +1,11 @@
+<<<<<<< HEAD
 /bin/
+=======
+*.pyc
+/bazel-*
+/compile_commands.json
+aos_log-*
+*.swp
+*.swo
+*.project
+>>>>>>> branch 'master' of https://github.com/sushisharkjl/2019_P1_Group_2_GameEngineDemo.git
