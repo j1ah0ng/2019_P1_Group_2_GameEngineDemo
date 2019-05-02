@@ -1,3 +1,4 @@
-# wau a readme
+# Team Members
+Ryan Yavari
 
 uwu what's this
