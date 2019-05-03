@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
-import javafx.Scene.Parent;
+import javafx.scene.Parent;
 
 public abstract class Actor extends javafx.scene.image.ImageView {
 
@@ -21,10 +21,10 @@ public abstract class Actor extends javafx.scene.image.ImageView {
         World k = this.getWorld();
 
         // Return empty list if no World exists
-        if (k == null) return new List<A>();
+        if (k == null) return new ArrayList<A>();
 
         List<A> allActors = k.getObjects(cls);
-        List<A> intersectors = new List<A>();
+        List<A> intersectors = new ArrayList<A>();
         
         for (A a : allActors) 
             if (super.intersects(a.getBoundsInLocal())) intersectors.add(a);
@@ -34,7 +34,7 @@ public abstract class Actor extends javafx.scene.image.ImageView {
 
     public World getWorld() { Parent p = super.getParent();
 
-        return (p instanceof World) ? p : null;
+        return (p instanceof World) ? (World)p : null;
 
         /* TODO @sushisharkjl: Implement recursive traceback for nodes to trace
          * the real node parents. For example, if an Actor has a parent Node

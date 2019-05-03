@@ -8,3 +8,5 @@ aos_log-*
 *.xml
 *.iml
 *.project
+*.classpath
+*.idea
