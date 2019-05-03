@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.lang.Class;
 import java.util.List;
+import javafx.animation.AnimationTimer;
 
 public abstract class World extends javafx.scene.layout.Pane {
 
     // Attributes
-    ArrayList<Actor> actors;    // Holds all actors
+    protected ArrayList<Actor> actors;    // Holds all actors
+    private AnimationTimer t;
 
     // Constructor
     public World() {
@@ -42,8 +44,17 @@ public abstract class World extends javafx.scene.layout.Pane {
     }
 
     public void start() {
+        t = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                act(long now);
+            }
+        };
+        t.start();
     }
 
     public void stop() {
+        t.stop();
+        t = null;
     }
 }

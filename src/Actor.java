@@ -44,5 +44,8 @@ public abstract class Actor extends javafx.scene.image.ImageView {
          */
     }
 
-    public void move(double x, double y) { }
+    public void move(double x, double y) {
+        super.setX(super.getX() + x);
+        super.setY(super.getY() + y);
+    }
 }
