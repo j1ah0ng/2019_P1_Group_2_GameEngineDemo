@@ -2,55 +2,50 @@ import java.util.ArrayList;
 import java.lang.Class;
 import java.util.List;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 
 public abstract class World extends javafx.scene.layout.Pane {
 
     // Attributes
-    protected ArrayList<Actor> actors;    // Holds all actors
+    //protected ArrayList<Actor> actors;    // Holds all actors
     private AnimationTimer t;
 
     // Constructor
     public World() {
-        actors = new ArrayList<Actor>();
+    	 t = new AnimationTimer() {
+             @Override
+             public void handle(long now) {
+                 act(now);
+             }
+         };
+         t.start();
+        //actors = new ArrayList<Actor>();
     }
 
     // Methods
     public abstract void act(long now);
 
     public void add(Actor a) {
-        actors.add(a);
-    }
-
-    public void getObjects() {
+        getChildren().add(a);
     }
 
     public <A extends Actor> List<A> getObjects(Class<A> type) {
         List<A> list = new ArrayList<A>();
 
-        for (Actor actor : actors) {
-            if (type.isInstance(actor)) list.add((A)actor);
+        for (Node node : getChildren()) {
+            if (type.isInstance(node)) list.add((A)node);
         }
         
         return list;
     }
 
     public void remove(Actor a) {
-        for (int i = 0; i < actors.size(); ++i ){
-            if (actors.get(i) == a) {
-                actors.remove(a);
+        for (int i = 0; i < getChildren().size(); ++i ){
+            if (getChildren().get(i) == a) {
+            	getChildren().remove(a);
                 return;
             }
         }
-    }
-
-    public void start() {
-        t = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                act(long now);
-            }
-        };
-        t.start();
     }
 
     public void stop() {
