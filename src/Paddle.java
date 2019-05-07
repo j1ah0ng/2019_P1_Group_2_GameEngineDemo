@@ -1,10 +1,14 @@
 import javafx.scene.image.Image;
+import java.io.FileInputStream;
 
 public class Paddle extends Actor {
 
     public Paddle() {
         super();
-        super.setImage(new Image("https://i.imgur.com/ruMcsT2.jpg"));
+        try {
+            // todo: fix relative filepaths
+            super.setImage(new Image(new FileInputStream(".\\..\\assets\\paddle.png")));
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
