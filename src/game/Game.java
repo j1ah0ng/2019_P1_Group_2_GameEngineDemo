@@ -15,11 +15,26 @@ public class Game extends Application {
         Ball ball = new Ball();
         BallWorld world = new BallWorld();
 
+        // Instantiate all Bricks (32x16 sprite size)
+        Brick[][] bricks = new Brick[20][34];
+        for (int i = 0; i < 20; ++i) {
+            for (int j = 0; j < 34; ++j) {
+                bricks[i][j] = new Brick();
+                bricks[i][j].setX(32.0 * j);
+                bricks[i][j].setY(16.0 * i);
+            }
+        }
+
         // Add all EventHandlers to engine.World.
         world.addEventHandler(MouseEvent.MOUSE_MOVED, e -> paddle.setX(e.getX() - paddle.getWidth() / 2));
 
         // Add all Actors to world.
         world.getChildren().addAll(paddle, ball);    // WORLD ROOT NODE
+        for (Brick[] r : bricks) {
+            for (Brick brick : r) {
+                world.getChildren().add(brick);
+            }
+        }
 
         // Stage setup
         BorderPane root = new BorderPane(world);

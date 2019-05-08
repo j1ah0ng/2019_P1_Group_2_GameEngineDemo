@@ -78,4 +78,8 @@ public class Ball extends Actor {
             // todo: explore different bouncing behaviour (vectors?)
         }
     }
+
+    public void reverseX() { this.delX *= -1; }
+
+    public void reverseY() { this.delY *= -1; }
 }
