@@ -14,7 +14,7 @@ public class Ball extends Actor {
                          // that velocity = sqrt(delX^2 + delY^2) / delay
                          // where delay is measured in ns
     long lastRun;        // timestamp of last run() invokation
-    boolean paddle;      // helper flag to avoid unwanted behaviour with bouncing on the paddle
+    boolean flag;        // helper flag to avoid unwanted behaviour with bouncing on the paddle
 
     // Lazy constructor
     public Ball() {
@@ -33,7 +33,7 @@ public class Ball extends Actor {
         this.delY = delY;
         this.delay = delay;
         this.lastRun = 0;
-        this.paddle = false;
+        this.flag= false;
     }
 
     // Methods
@@ -67,12 +67,29 @@ public class Ball extends Actor {
                 // For now, assume there is just one paddle.
                 if (paddles.size() > 0) {
                     // only flip delY if it isn't already in a paddle
-                    if (!paddle) {
-                        // Literally just flip delY and set the flag
-                        delY *= -1;
-                        paddle = true;
+                    if (!flag) {
+                        Paddle paddle = paddles.get(0);
+                        double vel = paddle.getVel();
+
+                        if (getXCenter() > paddle.getX() && getXCenter() < paddle.getWidth() / 3.0 + paddle.getX() && vel < 0) {
+                            delX = Math.abs(delX) * -1;
+                            delY *= -1;
+                        } else if (getXCenter() < paddle.getX()) {
+                            double r = Math.sqrt((delX * delX) + (delY * delY));
+                            delY = Math.random() * delY * -1;
+                            delX = Math.sqrt((r * r) - (delY * delY)) * -1;
+                        } else if (getXCenter() < paddle.getX() + paddle.getWidth() && getXCenter() > paddle.getWidth() * 2 / 3 + paddle.getX() && vel > 0) {
+                            delX = Math.abs(delX);
+                            delY *= -1;
+                        } else if (getXCenter() > paddle.getX() + paddle.getWidth()) {
+                            double r = Math.sqrt((delX * delX) + (delY * delY));
+                            delY = Math.random() * delY * -1;
+                            delX = Math.sqrt((r * r) - (delY * delY));
+                        } else delY *= -1;
+
+                        flag = true;
                     }
-                } else if (paddle) paddle = false;  // if it's exited the paddle, toggle paddle to rep this
+                } else if (flag) flag = false;  // if it's exited the paddle, toggle paddle to rep this
             } catch (ClassNotFoundException e) { e.printStackTrace(); }
 
             // todo: explore different bouncing behaviour (vectors?)
