@@ -51,6 +51,8 @@ public abstract class World extends javafx.scene.layout.Pane {
         t.start();
     }
 
+=======
+>>>>>>> master:src/World.java
     public void stop() {
         t.stop();
         t = null;
