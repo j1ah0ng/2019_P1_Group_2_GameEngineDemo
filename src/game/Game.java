@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class Game extends Application {
     @Override
@@ -26,8 +28,10 @@ public class Game extends Application {
             }
         }
 
-        // Add all EventHandlers to engine.World.
+        // Add all EventHandlers
         world.addEventHandler(MouseEvent.MOUSE_MOVED, e -> paddle.setX(e.getX() - paddle.getWidth() / 2));
+        world.addEventHandler(KeyEvent.KEY_PRESSED, e -> world.addKey(e.getCode()));
+        world.addEventHandler(KeyEvent.KEY_RELEASED, e -> world.removeKey(e.getCode()));
 
         // Add all Actors to world.
         world.getChildren().addAll(paddle, ball);    // WORLD ROOT NODE
