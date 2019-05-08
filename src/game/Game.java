@@ -10,10 +10,11 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        BallWorld world = new BallWorld();
+
         // Instantiate all Actors.
         Paddle paddle = new Paddle();
         Ball ball = new Ball();
-        BallWorld world = new BallWorld();
 
         // Instantiate all Bricks (32x16 sprite size)
         Brick[][] bricks = new Brick[20][34];
@@ -45,7 +46,10 @@ public class Game extends Application {
         primaryStage.setResizable(false);
 
         // Final Stage-specific changes
-        paddle.setY(720 * 0.75);
+        paddle.setY(720 * 0.85);
+        world.getScore().setX(1080 * 0.10);
+        world.getScore().setY(720 * 0.80);
+        world.getChildren().add(world.getScore());
 
         // Show Stage
         primaryStage.show();

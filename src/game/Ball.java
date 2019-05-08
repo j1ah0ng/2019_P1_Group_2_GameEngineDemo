@@ -55,7 +55,10 @@ public class Ball extends Actor {
             else if (getX() + getWidth() > getWorld().getWidth()) delX *= -1;
 
             if (getY() < 0) delY *= -1;
-            else if (getY() + getHeight() > getWorld().getHeight()) delY *= -1;
+            else if (getY() + getHeight() > getWorld().getHeight()) {
+                delY *= -1;
+                ((BallWorld)getWorld()).getScore().addScore(-1000);
+            }
 
             move(delX, delY);
             lastRun = now;

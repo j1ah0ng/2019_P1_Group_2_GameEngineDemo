@@ -30,6 +30,9 @@ public class Brick extends Actor {
                     ball.reverseY();
                 }
 
+                // Add to Score.
+                ((BallWorld)getWorld()).getScore().addScore(100);
+
                 // Remove this Brick.
                 getWorld().getChildren().remove(this);
             }
