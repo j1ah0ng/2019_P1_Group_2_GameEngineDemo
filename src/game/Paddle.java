@@ -1,5 +1,7 @@
+package game;
+
+import engine.Actor;
 import javafx.scene.image.Image;
-import java.io.FileInputStream;
 
 public class Paddle extends Actor {
 
@@ -7,7 +9,7 @@ public class Paddle extends Actor {
         super();
         try {
             // todo: fix relative filepaths
-            super.setImage(new Image(new FileInputStream(".\\..\\assets\\paddle.png")));
+            super.setImage(new Image("file:assets/paddle.png"));
         } catch (Exception e) { e.printStackTrace(); }
     }
 
