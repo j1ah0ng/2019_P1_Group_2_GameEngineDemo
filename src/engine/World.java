@@ -1,3 +1,5 @@
+package engine;
+
 import java.util.ArrayList;
 import java.lang.Class;
 import java.util.List;
@@ -7,26 +9,23 @@ import javafx.scene.Node;
 public abstract class World extends javafx.scene.layout.Pane {
 
     // Attributes
-    //protected ArrayList<Actor> actors;    // Holds all actors
     private AnimationTimer t;
 
     // Constructor
     public World() {
-    	 t = new AnimationTimer() {
-             @Override
-             public void handle(long now) {
-                 act(now);
-             }
-         };
-         t.start();
-        //actors = new ArrayList<Actor>();
+        t = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                act(now);
+            }
+        };
     }
 
     // Methods
     public abstract void act(long now);
 
     public void add(Actor a) {
-        getChildren().add(a);
+        super.getChildren().add(a);
     }
 
     public <A extends Actor> List<A> getObjects(Class<A> type) {
@@ -42,12 +41,18 @@ public abstract class World extends javafx.scene.layout.Pane {
     public void remove(Actor a) {
         for (int i = 0; i < getChildren().size(); ++i ){
             if (getChildren().get(i) == a) {
-            	getChildren().remove(a);
+                getChildren().remove(a);
                 return;
             }
         }
     }
 
+    public void start() {
+        t.start();
+    }
+
+=======
+>>>>>>> master:src/World.java
     public void stop() {
         t.stop();
         t = null;
