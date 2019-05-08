@@ -1,3 +1,4 @@
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Score extends javafx.scene.text.Text {
@@ -5,7 +6,7 @@ public class Score extends javafx.scene.text.Text {
 	
 	public Score() {
 		score = 0;
-		this.setFontSize(15); //not done yet
+		this.setFont(new Font(20));  //does this make sense?
 		updateDisplay();
 	}
 	
@@ -19,7 +20,6 @@ public class Score extends javafx.scene.text.Text {
 
 	public void setScore(int score) {
 		this.score = score;
-		
-		//also update display
+		updateDisplay();
 	}	
 }
