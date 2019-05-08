@@ -1,3 +1,5 @@
+package game;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -21,5 +23,10 @@ public class Score extends javafx.scene.text.Text {
 	public void setScore(int score) {
 		this.score = score;
 		updateDisplay();
-	}	
+	}
+
+	public void addScore(int delta) {
+		this.score += delta;
+		updateDisplay();
+	}
 }
