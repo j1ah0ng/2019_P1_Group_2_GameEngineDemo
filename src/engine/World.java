@@ -1,18 +1,24 @@
 package engine;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.lang.Class;
 import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
+import javafx.scene.input.KeyCode;
 
 public abstract class World extends javafx.scene.layout.Pane {
 
     // Attributes
+    private HashSet<KeyCode> keys;
     private AnimationTimer t;
 
     // Constructor
     public World() {
+        keys = new HashSet<KeyCode>();
+        //keys.add(KeyCode.LEFT);
+        //keys.add(KeyCode.RIGHT);
         t = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -55,4 +61,8 @@ public abstract class World extends javafx.scene.layout.Pane {
         t.stop();
         t = null;
     }
+    
+    public void addKey(KeyCode key) { keys.add(key); }
+    public void removeKey(KeyCode key) { keys.remove(key); }
+    public boolean hasKey(KeyCode key) { return keys.contains(key); }
 }

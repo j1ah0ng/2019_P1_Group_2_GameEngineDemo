@@ -2,6 +2,7 @@ package game;
 
 import engine.Actor;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 
 public class Paddle extends Actor {
 
@@ -27,6 +28,11 @@ public class Paddle extends Actor {
     public void act(long now) {
         if (now - lastRun >= delay) {
             vel = (super.getX() - prevX) / delay;
+        }        	
+        if (getWorld().hasKey(KeyCode.LEFT) && getX()>0) {   //improve left bound?
+        	setX(getX() - getWidth() / 2); //change this to control speed
+        }if (getWorld().hasKey(KeyCode.RIGHT) && getX()<(1079-getWidth()/2)) { //improve right bound?
+        	setX(getX() + getWidth() / 2); //change this to control speed
         }
     }
 

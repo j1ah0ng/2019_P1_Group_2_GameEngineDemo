@@ -1,6 +1,8 @@
 package game;
 
 import engine.Actor;
+import game.BallWorld;
+import game.Paddle;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -45,18 +47,29 @@ public class Ball extends Actor {
         this.delX = velX * delay;
         this.delY = velY * delay;
     }
+    
+    public void reverseX() {
+    	this.delX *= -1;
+    }
+    
+    public void reverseY() {
+    	this.delY *= -1;
+    }
 
     @Override
     public void act(long now) {
-
         if (now - lastRun > delay) {
             // Perform movements
             if (getX() < 0) delX *= -1;
             else if (getX() + getWidth() > getWorld().getWidth()) delX *= -1;
 
             if (getY() < 0) delY *= -1;
-            else if (getY() + getHeight() > getWorld().getHeight()) delY *= -1;
+            else if (getY() + getHeight() > getWorld().getHeight()) {
+            	delY *= -1;
+                ((BallWorld)getWorld()).getScore().addScore(-1000);
+            }
 
+            
             move(delX, delY);
             lastRun = now;
 

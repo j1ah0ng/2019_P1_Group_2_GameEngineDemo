@@ -8,7 +8,7 @@ public class Score extends javafx.scene.text.Text {
 	
 	public Score() {
 		score = 0;
-		this.setFont(new Font(20));  //does this make sense?
+		this.setFont(new Font(20));
 		updateDisplay();
 	}
 	
