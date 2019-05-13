@@ -43,7 +43,7 @@ public class Game extends Application {
 
         // Stage setup
         BorderPane root = new BorderPane(world);
-        primaryStage.setTitle("Ferrante's BallBrickBuster");
+        primaryStage.setTitle("Breakout");
         primaryStage.setScene(new Scene(root));
         primaryStage.setHeight(720);
         primaryStage.setWidth(1080);
@@ -59,6 +59,7 @@ public class Game extends Application {
         primaryStage.show();
 
         // Begin acting
+        world.requestFocus();
         world.start();
     }
 

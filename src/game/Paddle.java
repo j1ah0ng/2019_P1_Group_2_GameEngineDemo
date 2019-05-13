@@ -28,9 +28,15 @@ public class Paddle extends Actor {
     public void act(long now) {
         if (now - lastRun >= delay) {
             vel = (super.getX() - prevX) / delay;
-            if (getWorld().hasKey(KeyCode.LEFT)) setX(getX() - 1.6667);
-            else if (getWorld().hasKey(KeyCode.RIGHT)) setX(getX() + 1.6667);
+            if (getWorld().hasKey(KeyCode.LEFT)) setX(getX() - 10 * 1.6667);
+            else if (getWorld().hasKey(KeyCode.RIGHT)) setX(getX() + 10 * 1.6667);
         }
+
+        if (getX() < 0.0) setX(0.0);
+        else if (getX() + getWidth() > getWorld().getWidth()) setX(getWorld().getWidth() - getWidth());
+
+        if (getY() < 0.0) setY(0.0);
+        else if (getY() + getHeight() > getWorld().getHeight()) setY(getWorld().getHeight() - getHeight());
     }
 
     public double getVel() { return vel; }
