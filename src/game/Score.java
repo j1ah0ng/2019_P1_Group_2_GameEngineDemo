@@ -1,32 +1,30 @@
 package game;
 
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class Score extends javafx.scene.text.Text {
-	private int score;
-	
-	public Score() {
-		score = 0;
-		this.setFont(new Font(20));  //does this make sense?
-		updateDisplay();
-	}
-	
-	void updateDisplay() {
-		this.setText(""+score);
-	}
-	
-	public int getScore() {
-		return score;
-	}
 
-	public void setScore(int score) {
-		this.score = score;
-		updateDisplay();
-	}
+    // Attributes
+    private int score;
 
-	public void addScore(int delta) {
-		this.score += delta;
-		updateDisplay();
-	}
+    public Score() {
+        super();
+        score = 0;
+        super.setFont(new Font("Arial", 24));
+        updateDisplay();
+    }
+
+    public void updateDisplay() { super.setText("" + score); }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+        updateDisplay();
+    }
+
+    public void addScore(int addition) {
+        this.score += addition;
+        updateDisplay();
+    }
+
+    public int getScore() { return this.score; }
 }

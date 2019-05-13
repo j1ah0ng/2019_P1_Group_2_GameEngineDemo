@@ -10,3 +10,4 @@ aos_log-*
 *.project
 *.classpath
 *.idea
+*.orig

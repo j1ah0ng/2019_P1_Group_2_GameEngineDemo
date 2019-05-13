@@ -16,6 +16,9 @@ public class Game extends Application {
 
         // Instantiate all Actors.
         Paddle paddle = new Paddle();
+        Brick brick1 = new Brick(100, 100);
+        Brick brick2 = new Brick(300, 50);
+        Brick brick3 = new Brick(200, 100);
         Ball ball = new Ball();
 
         // Instantiate all Bricks (32x16 sprite size)
@@ -34,12 +37,16 @@ public class Game extends Application {
         world.addEventHandler(KeyEvent.KEY_RELEASED, e -> world.removeKey(e.getCode()));
 
         // Add all Actors to world.
+<<<<<<< HEAD
         world.getChildren().addAll(paddle, ball);    // WORLD ROOT NODE
         for (Brick[] r : bricks) {
             for (Brick brick : r) {
                 world.getChildren().add(brick);
             }
         }
+=======
+        world.getChildren().addAll(paddle, ball, brick1, brick2, brick3);    // WORLD ROOT NODE
+>>>>>>> master
 
         // Stage setup
         BorderPane root = new BorderPane(world);
@@ -50,10 +57,15 @@ public class Game extends Application {
         primaryStage.setResizable(false);
 
         // Final Stage-specific changes
+<<<<<<< HEAD
         paddle.setY(720 * 0.85);
         world.getScore().setX(1080 * 0.10);
         world.getScore().setY(720 * 0.80);
         world.getChildren().add(world.getScore());
+=======
+        paddle.setY(720 * 0.75);
+        
+>>>>>>> master
 
         // Show Stage
         primaryStage.show();
